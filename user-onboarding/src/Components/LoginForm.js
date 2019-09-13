@@ -16,12 +16,11 @@ const LoginForm = ({ values, errors, touched, status }) => {
       <Form>
       {touched.name && errors.name && <p className="error">{errors.name}</p>}
         <Field name="name" type="text" placeholder="Name" />
+        {touched.email && errors.email && <p className="error">{errors.email}</p>}
         <Field name="email" type="text" placeholder="Email" />
         {touched.password && errors.password && <p className="error">{errors.password}</p>}
         <Field name="password" type="text" placeholder="Password" />
-        <br/>
-        <br/>
-        <Field name="tos" type="checkbox" />
+        <center><Field className= "checkbox" name="tos" type="checkbox" /></center>
         <h5>Agree to Terms of Service</h5>
         <button>Submit</button>
       </Form>
@@ -41,6 +40,8 @@ export default withFormik({
   validationSchema: Yup.object().shape({
     name: Yup.string()
       .required("NAME is required"),
+      email: Yup.string()
+      .required("EMAIL is required"),
     password: Yup.string()
       .min(6, "Password must be 6 characters or longer")
       .required("Password is required")
